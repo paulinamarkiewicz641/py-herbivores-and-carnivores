@@ -4,9 +4,9 @@ from typing import List
 class Animal:
     alive: List["Animal"] = []
 
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, health: int = 100) -> None:
         self.name: str = name
-        self.health: int = 100
+        self.health: int = health
         self.hidden: bool = False
         Animal.alive.append(self)
 
