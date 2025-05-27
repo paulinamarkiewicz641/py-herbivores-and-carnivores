@@ -1,8 +1,8 @@
-from typing import List, Any
+from typing import List
 
 
 class Animal:
-    alive: List['Animal'] = []
+    alive: List["Animal"] = []
 
     def __init__(self, name: str) -> None:
         self.name: str = name
@@ -11,7 +11,11 @@ class Animal:
         Animal.alive.append(self)
 
     def __repr__(self) -> str:
-        return f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
+        return (
+            f"{{Name: {self.name}, "
+            f"Health: {self.health}, "
+            f"Hidden: {self.hidden}}}"
+        )
 
     @classmethod
     def __str__(cls) -> str:
@@ -34,4 +38,3 @@ class Carnivore(Animal):
             if other.health < 0:
                 other.health = 0
             other.check_health()
-
