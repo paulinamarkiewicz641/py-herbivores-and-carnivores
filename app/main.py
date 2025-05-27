@@ -1,37 +1,37 @@
-class Animal:
-    alive = []
+from typing import List, Any
 
-    def __init__(self, name):
-        self.name = name
-        self.health = 100
-        self.hidden = False
+
+class Animal:
+    alive: List['Animal'] = []
+
+    def __init__(self, name: str) -> None:
+        self.name: str = name
+        self.health: int = 100
+        self.hidden: bool = False
         Animal.alive.append(self)
 
-    def __repr__(self):
-        # Custom string for each individual animal
+    def __repr__(self) -> str:
         return f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
 
     @classmethod
-    def __str__(cls):
-        # Custom string for the Animal.alive list
+    def __str__(cls) -> str:
         return str([repr(animal) for animal in cls.alive])
 
-    def check_health(self):
+    def check_health(self) -> None:
         if self.health <= 0 and self in Animal.alive:
             Animal.alive.remove(self)
 
 
 class Herbivore(Animal):
-    def hide(self):
+    def hide(self) -> None:
         self.hidden = not self.hidden
 
 
 class Carnivore(Animal):
-    def bite(self, other):
+    def bite(self, other: Animal) -> None:
         if isinstance(other, Herbivore) and not other.hidden:
             other.health -= 50
             if other.health < 0:
                 other.health = 0
             other.check_health()
-
 
